@@ -288,7 +288,11 @@ async def on_command_error(ctx, error):
 
 # Run the bot
 if __name__ == "__main__":
-    app.run()
+    import threading
+
+    # Run Flask in a thread
+    threading.Thread(target=lambda: app.run(host="0.0.0.0", port=8080)).start()
+
     if not TOKEN:
         print("❌ Discord token not found! Please set DISCORD_TOKEN in your .env file")
     else:

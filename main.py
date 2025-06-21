@@ -5,6 +5,15 @@ import os
 import asyncio
 import aiohttp
 from datetime import datetime
+from flask import Flask
+
+# flask config
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+  return "<h1> Bot is running </h1>"
 
 # Load environment variables
 load_dotenv()
@@ -279,6 +288,7 @@ async def on_command_error(ctx, error):
 
 # Run the bot
 if __name__ == "__main__":
+    app.run()
     if not TOKEN:
         print("❌ Discord token not found! Please set DISCORD_TOKEN in your .env file")
     else:
